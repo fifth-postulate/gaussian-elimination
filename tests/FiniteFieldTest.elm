@@ -1,4 +1,4 @@
-module FiniteFieldTest exposing (suite)
+module FiniteFieldTest exposing (finite, suite)
 
 import Expect
 import Field exposing (Field)
