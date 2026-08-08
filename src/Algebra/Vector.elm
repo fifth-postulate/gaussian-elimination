@@ -1,4 +1,4 @@
-module Algebra.Vector exposing (Vector, add, dimension, fromList, scale, subtract)
+module Algebra.Vector exposing (Vector, add, dimension, fromList, index, scale, subtract, zero)
 
 import Field exposing (Field)
 import General exposing (uncurry, zip)
@@ -16,6 +16,12 @@ fromList =
 dimension : Vector a -> Int
 dimension (Vector coordinates) =
     List.length coordinates
+
+
+zero : Field a -> Int -> Vector a
+zero field d =
+    List.repeat d field.zero
+        |> fromList
 
 
 add : Field a -> Vector a -> Vector a -> Vector a
