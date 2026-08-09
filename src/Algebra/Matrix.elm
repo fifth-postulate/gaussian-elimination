@@ -1,8 +1,9 @@
-module Algebra.Matrix exposing (Matrix, Operation(..), fromList, rowEchelon)
+module Algebra.Matrix exposing (Matrix, Operation(..), fromList, identity, rowEchelon, transpose)
 
 import Algebra.Vector as Vector exposing (Vector)
 import Array exposing (Array)
 import Field exposing (Field)
+import General exposing (swivel)
 
 
 type Matrix a
@@ -194,4 +195,31 @@ linear field v from to ((Rows rows) as matrix) =
     in
     rows
         |> Array.set to result
+        |> Rows
+
+
+identity : Field a -> Int -> Matrix a
+identity field n =
+    let
+        base : Int -> Vector a
+        base i =
+            field.one
+                :: List.repeat (n - 1) field.zero
+                |> swivel (negate i)
+                |> Vector.fromList
+    in
+    Array.initialize n base
+        |> Rows
+
+
+transpose : Field a -> Matrix a -> Matrix a
+transpose field matrix =
+    let
+        row : Int -> Vector a
+        row c =
+            List.range 0 (rowCount matrix - 1)
+                |> List.map (\r -> element r c matrix |> Maybe.withDefault field.zero)
+                |> Vector.fromList
+    in
+    Array.initialize (columnCount matrix) row
         |> Rows
