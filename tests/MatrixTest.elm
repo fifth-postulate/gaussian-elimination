@@ -226,5 +226,32 @@ suite =
                             |> VectorSpace.span field
                 in
                 Expect.equal True (VectorSpace.equals field actual expected)
+         , test "ligths out application test" <|
+            \_ ->
+                let
+                    f3 =
+                        Finite.field 3
+
+                    actual =
+                        [ [ 1, 1, 1, 0, 0, 0 ]
+                        , [ 1, 1, 0, 1, 0, 0 ]
+                        , [ 1, 0, 1, 1, 1, 0 ]
+                        , [ 0, 1, 1, 1, 0, 1 ]
+                        , [ 0, 0, 1, 0, 1, 1 ]
+                        , [ 0, 0, 0, 1, 1, 1 ]
+                        ]
+                            |> List.map (List.map f3.fromInt)
+                            |> List.map Vector.fromList
+                            |> Matrix.fromList
+                            |> Matrix.kernel f3
+
+                    expected =
+                        [ 1, -1, 0, 0, -1, 1 ]
+                            |> List.map f3.fromInt
+                            |> Vector.fromList
+                            |> List.singleton
+                            |> VectorSpace.span f3
+                in
+                Expect.equal actual expected
          ]
         )
