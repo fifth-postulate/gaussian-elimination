@@ -1,6 +1,7 @@
-module Algebra.Matrix exposing (Matrix, Operation(..), fromList, identity, rowEchelon, transpose)
+module Algebra.Matrix exposing (Matrix, Operation(..), fromList, identity, kernel, rowEchelon, transpose)
 
 import Algebra.Vector as Vector exposing (Vector)
+import Algebra.VectorSpace as VectorSpace exposing (VectorSpace)
 import Array exposing (Array)
 import Field exposing (Field)
 import General exposing (swivel)
@@ -223,3 +224,43 @@ transpose field matrix =
     in
     Array.initialize (columnCount matrix) row
         |> Rows
+
+
+kernel : Field a -> Matrix a -> VectorSpace a
+kernel field matrix =
+    let
+        ( _, operations, pivots ) =
+            rowEchelon field matrix
+
+        numberOfRows =
+            rowCount matrix
+
+        id =
+            identity field numberOfRows
+
+        basis =
+            operations
+                |> List.foldl (perform field) id
+                |> selectRows (List.length pivots) numberOfRows
+    in
+    VectorSpace.span field basis
+
+
+perform : Field a -> Operation a -> Matrix a -> Matrix a
+perform field operation matrix =
+    case operation of
+        Swap i j ->
+            swap field i j matrix
+
+        Multiply v i ->
+            multiplyRow field v i matrix
+
+        Linear v i j ->
+            linear field v i j matrix
+
+
+selectRows : Int -> Int -> Matrix a -> List (Vector a)
+selectRows i j (Rows rows) =
+    rows
+        |> Array.slice i j
+        |> Array.toList

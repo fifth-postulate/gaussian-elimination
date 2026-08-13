@@ -2,6 +2,7 @@ module MatrixTest exposing (suite)
 
 import Algebra.Matrix as Matrix exposing (Operation(..))
 import Algebra.Vector as Vector
+import Algebra.VectorSpace as VectorSpace
 import Expect
 import Field exposing (Field)
 import Field.Finite as Finite exposing (Finite)
@@ -204,5 +205,26 @@ suite =
                             |> Matrix.transpose field
                 in
                 Expect.equal actual expected
+         , test "determine kernel of a matrix" <|
+            \_ ->
+                let
+                    actual =
+                        [ [ 1, 2, 3, 4, 5 ]
+                        , [ 2, 4, 6, 8, 10 ]
+                        , [ 0, 1, 2, 3, 4 ]
+                        ]
+                            |> List.map (List.map field.fromInt)
+                            |> List.map Vector.fromList
+                            |> Matrix.fromList
+                            |> Matrix.kernel field
+
+                    expected =
+                        [ 2, -1, 0 ]
+                            |> List.map field.fromInt
+                            |> Vector.fromList
+                            |> List.singleton
+                            |> VectorSpace.span field
+                in
+                Expect.equal True (VectorSpace.equals field actual expected)
          ]
         )
