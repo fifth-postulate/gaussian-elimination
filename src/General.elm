@@ -1,4 +1,4 @@
-module General exposing (swivel, uncurry, zip)
+module General exposing (swap, swivel, uncurry, zip)
 
 
 zip : List a -> List b -> List ( a, b )
@@ -38,3 +38,8 @@ swivel n us =
             List.drop n_ us
     in
     List.append ts hs
+
+
+swap : (b -> a -> c) -> a -> b -> c
+swap f a b =
+    f b a

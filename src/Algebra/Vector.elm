@@ -1,4 +1,4 @@
-module Algebra.Vector exposing (Vector, add, dimension, fromList, index, scale, subtract, zero)
+module Algebra.Vector exposing (Vector, add, dimension, dot, fromList, index, scale, subtract, zero)
 
 import Field exposing (Field)
 import General exposing (uncurry, zip)
