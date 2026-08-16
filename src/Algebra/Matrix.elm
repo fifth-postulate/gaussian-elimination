@@ -1,4 +1,33 @@
-module Algebra.Matrix exposing (Matrix, Operation(..), fromList, identity, kernel, rowEchelon, transpose)
+module Algebra.Matrix exposing
+    ( Matrix, Operation(..)
+    , fromList, identity
+    , transpose
+    , kernel, rowEchelon
+    )
+
+{-| This module provides a Matrix type.
+
+
+## Type
+
+@docs Matrix, Operation
+
+
+## Creation
+
+@docs fromList, identity
+
+
+## Operation
+
+@docs transpose
+
+
+## System of equation
+
+@docs kernel, rowEchelon
+
+-}
 
 import Algebra.Vector as Vector exposing (Vector)
 import Algebra.VectorSpace as VectorSpace exposing (VectorSpace)
@@ -7,10 +36,17 @@ import Field exposing (Field)
 import General exposing (swivel)
 
 
+{-| The Matrix type.
+
+This type is parameterized over its elements.
+
+-}
 type Matrix a
     = Rows (Array (Vector a))
 
 
+{-| Create a Matrix from a list of vectors.
+-}
 fromList : List (Vector a) -> Matrix a
 fromList rows =
     Rows (Array.fromList rows)
@@ -51,6 +87,8 @@ type SearchResult a
     | Found Int Int a
 
 
+{-| Return the row echelon form of a matrix.
+-}
 rowEchelon : Field a -> Matrix a -> ( Matrix a, List (Operation a), List Int )
 rowEchelon field matrix =
     let
@@ -226,6 +264,8 @@ transpose field matrix =
         |> Rows
 
 
+{-| Determine the kernel of a matrix.
+-}
 kernel : Field a -> Matrix a -> VectorSpace a
 kernel field matrix =
     let

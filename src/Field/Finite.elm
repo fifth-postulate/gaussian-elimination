@@ -1,13 +1,27 @@
 module Field.Finite exposing (Finite, field)
 
+{-| The field of Finite numbers.
+
+@docs Finite, field
+
+-}
+
 import Arithmetic exposing (egcd, sign)
 import Field exposing (Field)
 
 
+{-| Container for a finite number.
+-}
 type Finite
     = Element { modulus : Int, class : Int }
 
 
+{-| Returns a finite field.
+
+Currently only a prime number of elements is supported. The client must ensure
+the number of elements is prime.
+
+-}
 field : Int -> Field Finite
 field modulus =
     { zero = fromInt modulus 0

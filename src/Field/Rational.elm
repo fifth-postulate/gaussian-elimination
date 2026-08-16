@@ -1,13 +1,23 @@
 module Field.Rational exposing (Rational, field)
 
+{-| The field of Rational numbers.
+
+@docs Rational, field
+
+-}
+
 import Arithmetic exposing (egcd, sign)
 import Field exposing (Field)
 
 
+{-| Container element for a rational element
+-}
 type Rational
     = Element { numerator : Int, denominator : Int }
 
 
+{-| Returns the field of rational numbers.
+-}
 field : Field Rational
 field =
     { zero = fromInt 0
