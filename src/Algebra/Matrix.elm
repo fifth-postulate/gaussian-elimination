@@ -76,6 +76,8 @@ columnCount (Rows vs) =
         |> Maybe.withDefault 0
 
 
+{-| Type of elementary operations that can be performed on a Matrix.
+-}
 type Operation a
     = Swap Int Int
     | Multiply a Int
@@ -237,6 +239,8 @@ linear field v from to ((Rows rows) as matrix) =
         |> Rows
 
 
+{-| The identity matrix of a certain dimension.
+-}
 identity : Field a -> Int -> Matrix a
 identity field n =
     let
@@ -251,6 +255,8 @@ identity field n =
         |> Rows
 
 
+{-| Returns the transpose of a Matrix.
+-}
 transpose : Field a -> Matrix a -> Matrix a
 transpose field matrix =
     let

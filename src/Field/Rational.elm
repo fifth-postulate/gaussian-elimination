@@ -35,15 +35,6 @@ fromInt numerator =
     Element { numerator = numerator, denominator = 1 }
 
 
-create : Int -> Int -> Maybe Rational
-create numerator denominator =
-    if denominator == 0 then
-        Nothing
-
-    else
-        Just (create_ numerator denominator)
-
-
 create_ : Int -> Int -> Rational
 create_ numerator denominator =
     let

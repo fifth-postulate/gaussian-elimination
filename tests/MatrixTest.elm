@@ -4,10 +4,7 @@ import Algebra.Matrix as Matrix exposing (Operation(..))
 import Algebra.Vector as Vector
 import Algebra.VectorSpace as VectorSpace
 import Expect
-import Field exposing (Field)
-import Field.Finite as Finite exposing (Finite)
-import FiniteFieldTest exposing (finite)
-import Fuzz exposing (Fuzzer)
+import Field.Finite as Finite
 import Test exposing (..)
 
 

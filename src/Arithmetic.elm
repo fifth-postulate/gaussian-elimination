@@ -1,4 +1,4 @@
-module Arithmetic exposing (egcd, sign)
+module Arithmetic exposing (egcd, inBase, sign)
 
 
 egcd : Int -> Int -> ( Int, Int, Int )
@@ -31,3 +31,21 @@ sign n =
 
         GT ->
             1
+
+
+inBase : Int -> Int -> Int -> List Int
+inBase base digits n =
+    let
+        go : List Int -> Int -> Int -> List Int
+        go acc d remainder =
+            if d >= digits then
+                acc
+
+            else
+                let
+                    digit =
+                        modBy base remainder
+                in
+                go (digit :: acc) (d + 1) (remainder // base)
+    in
+    go [] 0 n

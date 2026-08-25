@@ -1,12 +1,20 @@
-module Field.Finite exposing (Finite, field)
+module Field.Finite exposing
+    ( Finite, field
+    , order, toInt
+    )
 
 {-| The field of Finite numbers.
 
 @docs Finite, field
 
+
+## Inspection
+
+@docs order, toInt
+
 -}
 
-import Arithmetic exposing (egcd, sign)
+import Arithmetic exposing (egcd)
 import Field exposing (Field)
 
 
@@ -67,3 +75,21 @@ invert (Element e) =
         inverse
             |> fromInt e.modulus
             |> Just
+
+
+{-| Determine the number of elements in the finite field.
+-}
+order : Field Finite -> Int
+order finiteField =
+    case finiteField.zero of
+        Element { modulus } ->
+            modulus
+
+
+{-| Dtermine in which class the element belangs to.
+-}
+toInt : Finite -> Int
+toInt element =
+    case element of
+        Element { class } ->
+            class

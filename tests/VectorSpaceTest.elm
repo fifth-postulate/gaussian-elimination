@@ -2,9 +2,9 @@ module VectorSpaceTest exposing (suite, vectorSpace)
 
 import Algebra.Vector as Vector
 import Algebra.VectorSpace as VectorSpace exposing (VectorSpace)
-import Expect exposing (Expectation)
+import Expect
 import Field exposing (Field)
-import Field.Finite as Finite exposing (Finite)
+import Field.Finite as Finite
 import Fuzz exposing (..)
 import Test exposing (..)
 

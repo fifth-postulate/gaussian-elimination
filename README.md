@@ -5,7 +5,7 @@ This project provides an [Elm][elm] library that can perform
 
 ## Concept
 
-[Gaussian Elimination][wikipedia:guassian-elimination] is
+[Gaussian Elimination][wikipedia:gaussian-elimination] is
 
 > an algorithm for solving systems of linear equations. It consists of a
 > sequence of row-wise operations performed on the corresponding matrix of

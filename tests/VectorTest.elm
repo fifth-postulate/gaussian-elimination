@@ -2,10 +2,7 @@ module VectorTest exposing (suite)
 
 import Algebra.Vector as Vector
 import Expect
-import Field exposing (Field)
-import Field.Finite as Finite exposing (Finite)
-import FiniteFieldTest exposing (finite)
-import Fuzz exposing (Fuzzer)
+import Field.Finite as Finite
 import Test exposing (..)
 
 

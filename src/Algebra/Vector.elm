@@ -3,6 +3,7 @@ module Algebra.Vector exposing
     , fromList, zero
     , dimension, index
     , add, dot, scale, subtract
+    , toList
     )
 
 {-| This module provides a Vector type.
@@ -26,6 +27,11 @@ module Algebra.Vector exposing
 ## Operation
 
 @docs add, dot, scale, subtract
+
+
+## Deconstruction
+
+@docs toList
 
 -}
 
@@ -127,3 +133,10 @@ index n (Vector coordinates) =
         coordinates
             |> List.drop n
             |> List.head
+
+
+{-| Return the coordinates of the vector.
+-}
+toList : Vector a -> List a
+toList (Vector coordinates) =
+    coordinates
