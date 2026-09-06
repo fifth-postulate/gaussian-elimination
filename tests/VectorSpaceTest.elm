@@ -89,6 +89,19 @@ suite =
                     in
                     Expect.equal True (VectorSpace.equals field actual expected)
             ]
+         , describe "all"
+            [ test "origin should return empty list" <|
+                \_ ->
+                    let
+                        actual =
+                            vectorSpace field []
+                                |> VectorSpace.all (Vector.toList >> List.map Finite.toInt) field
+
+                        expected =
+                            []
+                    in
+                    Expect.equal expected actual
+            ]
          ]
         )
 
