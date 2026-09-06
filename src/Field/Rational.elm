@@ -2,6 +2,21 @@ module Field.Rational exposing (Rational, field)
 
 {-| The field of Rational numbers.
 
+Allows you to calculate with rational numbers
+
+    field = Field.Raational.field
+
+    a =
+        5
+            |> field.fromInt
+    b =
+        8
+            |> field.fromInt
+            |> field.invertion
+            |> Maybe.withDefault field.zero
+
+    field.multiplication a b == 5/8
+
 @docs Rational, field
 
 -}

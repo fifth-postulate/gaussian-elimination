@@ -5,6 +5,19 @@ module Field.Finite exposing
 
 {-| The field of Finite numbers.
 
+These finite fields aren't as general as can be. These finie fields only
+can have a prime number of elements.
+
+Below we will show that in the finite field with 5 elements 2 and 3 are
+mutlplicative inverses.
+
+    field = Field.Finite.field 5
+
+    two = field.fromInt 2
+    three = field.fromInt 3
+
+    field.multiplication two three == field.fromInt 1
+
 @docs Finite, field
 
 
